@@ -1,22 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import {Howl} from 'howler';
+import { useState } from 'react';
 
 function App() {
+  const radioLinks ={
+    "pattupetti":""
+  } 
+  const [sound]= useState(
+    new Howl({
+      src: ['https://listen.radioking.com/radio/305023/stream/354512'],
+      html5: true,
+      format: ['mp3', 'aac']
+  })
+  );
+
+  const playSound = () =>{
+  sound.play(); 
+  }
+  
+  const pauseSound = () =>{
+  sound.pause(); 
+  }
+  
+  const stopSound = () =>{
+  sound.stop(); 
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Web Radio 
-        </a>
+        <h5>Internet Radio</h5>
+        <div>
+        <h5>Available Stations</h5>
+        <button>Prev</button>
+        <button onClick={playSound}>Play</button>
+        <button onClick={pauseSound}>Pause</button>
+        <button onClick={stopSound}>Stop</button>
+        <button>Next</button>
+        <div>
+        </div>
+        </div>
       </header>
     </div>
   );
