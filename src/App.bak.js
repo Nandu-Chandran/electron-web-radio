@@ -1,5 +1,5 @@
 import './App.css';
-import {Howl} from 'howler';
+import {Howl,Howler} from 'howler';
 import { useState } from 'react';
 
 function App() {
@@ -10,21 +10,18 @@ function App() {
   } 
 
   const audioKeys= Object.keys(radioLinks);
-  console.log(audioKeys)
   const [currentTrackIndex,setCurrentTrackIndex] = useState(0);
   const currentTrack = audioKeys[currentTrackIndex];
-
-  console.log(radioLinks[currentTrack])
+  console.log(currentTrackIndex,currentTrack, radioLinks[currentTrack])
 
   const sound= useState(
     new Howl({
-      src: [ 'https://listen.radioking.com/radio/305023/stream/354512'],
+      src: [ radioLinks[currentTrack] ],
       html5: true,
       format: ['mp3', 'aac']
   })
-  
   );
-
+  console.log(sound)
   const playSound = () =>{
   sound.play(); 
   }

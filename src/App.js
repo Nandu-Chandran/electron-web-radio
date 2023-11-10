@@ -3,12 +3,21 @@ import {Howl} from 'howler';
 import { useState } from 'react';
 
 function App() {
+  
   const radioLinks ={
-    "pattupetti":""
+    "Pattupetti":"https://listen.radioking.com/radio/305023/stream/354512",
+    "Rainbow":'https://air.pc.cdn.bitgravity.com/air/live/pbaudio045/playlist.m3u8',
+    "Club fm":'http://playerservices.streamtheworld.com/api/livestream-redirect/CLUBFMUAEAAC.aac'
   } 
+
+  const audioKeys= Object.keys(radioLinks);
+  const [currentTrackIndex,setCurrentTrackIndex] = useState(0);
+  const currentTrack = audioKeys[currentTrackIndex];
+  console.log(Object.values(radioLinks))
+  
   const [sound]= useState(
     new Howl({
-      src: ['https://listen.radioking.com/radio/305023/stream/354512'],
+      src: [ radioLinks[currentTrack]],
       html5: true,
       format: ['mp3', 'aac']
   })
